@@ -1,0 +1,12 @@
+{
+  "name": "@moneykit/connect",
+  "description": "MoneyKit Connect launcher for web.",
+  "version": "0.1.1",
+  "author": "MoneyKit",
+  "dependencies": {
+    "query-string": "^8.1.0"
+  },
+  "module": "index.js",
+  "type": "module",
+  "main": "index.js"
+}
