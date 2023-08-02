@@ -29,6 +29,21 @@ The `link` method also accepts three optional callback parameters:
 - `onLinkExit` - called whenever the link process is exited manually by the user. Receives no arguments at this time.
 - `onLinkEvent` - called whenever various events occur at different stages of the linking process, as indicated by the Event object argument. Can be used to tailor or notify your application as a user progresses through a link.
 
+### OAuth Flows
+
+Many Financial Institutions require users to authorize the connection via OAuth on the institution's own website.
+
+To support this workflow you must provide a `redirect_uri` when creating a Link Session via the MoneyKit API. This URI should go to a page of yours which can re-initialize MoneyKit Connect via its `continue()` method. This method requires the URL that was redirected to as its first argument (the URL should included all query parameters appended by MoneyKit during the redirect) followed by all of the same optional callbacks detailed for the `link()` method above.
+
+```js
+// my-redirect-page.js
+import MoneyKit from "@moneykit/connect";
+const moneykit = new MoneyKit();
+moneykit.continue(window.location.href, (exchangeableToken, institution) => {
+  console.log(exchangeableToken, institution);
+});
+```
+
 ## Link Token Exchange
 
-To finalize the connection and acquire a long-lived access token with which to make subsequent requests, you must pass this exchangeable token to your secure backend service which should then [exchange](https://docs.moneykit.com/openapi/core/#operation/exchange_token) it via the MoneyKit API.
+To finalize the connection and acquire a link ID with which to make subsequent requests, you must pass your exchangeable token received upon completion of a user's connection to your secure backend service. It should then [exchange](https://docs.moneykit.com/openapi/core/#operation/exchange_token) the token for a link ID via the MoneyKit API.
