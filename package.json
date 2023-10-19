@@ -1,12 +1,13 @@
 {
   "name": "@moneykit/connect",
   "description": "MoneyKit Connect launcher for web.",
-  "version": "0.1.10",
+  "version": "0.2.0",
   "author": "MoneyKit",
   "repository": {
     "type": "git",
     "url": "https://github.com/moneykit/connect-js.git"
   },
+  "types": "./types/index.d.ts",
   "dependencies": {
     "query-string": "^8.1.0"
   },
