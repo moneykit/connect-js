@@ -1,5 +1,4 @@
-import { ThemeTypographyTextStyle, moneyui } from "../../../ui-theme/src";
-import type { Theme, ThemeTypographyStyle } from "../../../ui-theme/src";
+import { type Theme, type ThemeTypographyStyle, ThemeTypographyTextStyle } from "./theme";
 export type Institution = {
     avatar: string | null;
     avatar_dark: string | null;
@@ -11,7 +10,7 @@ export type Institution = {
     logo: string | null;
     logo_dark: string | null;
     name: string;
-    is_curated: boolean;
+    search_group: "primary" | "secondary" | "tertiary";
 };
 export type AccountType = "depository.cash" | "depository.checking" | "depository.savings" | "depository.prepaid" | "depository.other" | "credit_card" | "loan.general" | "loan.mortgage" | "loan.other" | "investment" | "other";
 export type LinkedInstitution = Institution & {
@@ -52,5 +51,4 @@ declare class MoneyKit {
     private launch;
 }
 export default MoneyKit;
-export { moneyui, type Theme, ThemeTypographyTextStyle, type ThemeTypographyStyle, };
 export declare const themeTypographyStyleForTextStyle: (theme: Theme, textStyle: ThemeTypographyTextStyle) => ThemeTypographyStyle;
