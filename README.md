@@ -33,7 +33,7 @@ The `link` method also accepts three optional callback parameters:
 
 Many Financial Institutions require users to authorize the connection via OAuth on the institution's own website.
 
-To support this workflow you must provide a `redirect_uri` when creating a Link Session via the MoneyKit API. This URI should go to a page of yours which can re-initialize MoneyKit Connect via its `continue()` method. This method requires the URL that was redirected to as its first argument (the URL should included all query parameters appended by MoneyKit during the redirect) followed by all of the same optional callbacks detailed for the `link()` method above.
+To support this workflow you must provide a `redirect_uri` when creating a Link Session via the MoneyKit API. This URI should go to a page of yours which can re-initialize MoneyKit Connect via its `continue()` method. This method requires the URL that was redirected to as its first argument (the URL should include all query parameters appended by MoneyKit during the redirect) followed by all of the same optional callbacks detailed for the `link()` method above.
 
 ```js
 // my-redirect-page.js
