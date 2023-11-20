@@ -34,19 +34,20 @@ export type MoneyKitOptions = {
     stepTimers?: boolean;
     containerID?: string;
 };
-type LinkSuccessCallback = (exchangeableToken: string, institution: LinkedInstitution) => void;
-type RelinkSuccessCallback = (institution: LinkedInstitution) => void;
-type LinkExitCallback = () => void;
-type LinkEventCallback = (event: Record<string, unknown>) => void;
+export type LinkSuccessCallback = (exchangeableToken: string, institution: LinkedInstitution) => void;
+export type RelinkSuccessCallback = (institution: LinkedInstitution) => void;
+export type LinkExitCallback = () => void;
+export type LinkEventCallback = (event: Record<string, unknown>) => void;
 declare class MoneyKit {
     options: MoneyKitOptions;
     constructor(options?: MoneyKitOptions);
     link(linkSessionToken: string, onLinkSuccess?: LinkSuccessCallback, onLinkExit?: LinkExitCallback, onLinkEvent?: (event: Record<string, unknown>) => void): void;
     relink(linkSessionToken: string, onRelinkSuccess?: RelinkSuccessCallback, onRelinkExit?: LinkExitCallback, onRelinkEvent?: (event: Record<string, unknown>) => void): void;
-    continue(redirectURL: string, onLinkSuccess?: LinkSuccessCallback, onLinkExit?: LinkExitCallback, // TODO: Pass optional error and metadata.
-    onLinkEvent?: LinkEventCallback): void;
-    __linkDirect(linkSessionToken: string, onLinkSuccess?: LinkSuccessCallback, onLinkExit?: LinkExitCallback, onLinkEvent?: (event: Record<string, unknown>) => void): void;
+    continue(redirectURL: string, onLinkSuccess?: LinkSuccessCallback, onLinkExit?: LinkExitCallback, onLinkEvent?: LinkEventCallback): void;
+    __linkDirect(linkSessionToken: string, onLinkSuccess?: LinkSuccessCallback, onLinkExit?: LinkExitCallback, onLinkEvent?: LinkEventCallback): void;
+    __continueDirect(redirectURL: string, onLinkSuccess?: LinkSuccessCallback, onLinkExit?: LinkExitCallback, onLinkEvent?: LinkEventCallback): void;
     private startLink;
+    private continueLink;
     private linkParametersFromOptions;
     private launch;
 }
