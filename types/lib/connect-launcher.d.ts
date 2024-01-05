@@ -33,16 +33,22 @@ export type MoneyKitOptions = {
     device?: MoneyKitDevice;
     stepTimers?: boolean;
     containerID?: string;
+    __onDemoEvent?: LinkEventCallback;
 };
 export type LinkSuccessCallback = (exchangeableToken: string, institution: LinkedInstitution) => void;
 export type RelinkSuccessCallback = (institution: LinkedInstitution) => void;
-export type LinkExitCallback = () => void;
+export type LinkExitCallback = (error: LinkExitError | null) => void;
 export type LinkEventCallback = (event: Record<string, unknown>) => void;
+export type LinkExitError = {
+    error_id: string;
+    displayed_message: string;
+    request_id: string | null;
+};
 declare class MoneyKit {
     options: MoneyKitOptions;
     constructor(options?: MoneyKitOptions);
-    link(linkSessionToken: string, onLinkSuccess?: LinkSuccessCallback, onLinkExit?: LinkExitCallback, onLinkEvent?: (event: Record<string, unknown>) => void): void;
-    relink(linkSessionToken: string, onRelinkSuccess?: RelinkSuccessCallback, onRelinkExit?: LinkExitCallback, onRelinkEvent?: (event: Record<string, unknown>) => void): void;
+    link(linkSessionToken: string, onLinkSuccess?: LinkSuccessCallback, onLinkExit?: LinkExitCallback, onLinkEvent?: LinkEventCallback): void;
+    relink(linkSessionToken: string, onRelinkSuccess?: RelinkSuccessCallback, onRelinkExit?: LinkExitCallback, onRelinkEvent?: LinkEventCallback): void;
     continue(redirectURL: string, onLinkSuccess?: LinkSuccessCallback, onLinkExit?: LinkExitCallback, onLinkEvent?: LinkEventCallback): void;
     __linkDirect(linkSessionToken: string, onLinkSuccess?: LinkSuccessCallback, onLinkExit?: LinkExitCallback, onLinkEvent?: LinkEventCallback): void;
     __continueDirect(redirectURL: string, onLinkSuccess?: LinkSuccessCallback, onLinkExit?: LinkExitCallback, onLinkEvent?: LinkEventCallback): void;

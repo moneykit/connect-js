@@ -1,7 +1,7 @@
 {
   "name": "@moneykit/connect",
   "description": "MoneyKit Connect launcher for web.",
-  "version": "0.2.3",
+  "version": "0.3.0",
   "author": "MoneyKit",
   "repository": {
     "type": "git",
