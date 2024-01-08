@@ -18,7 +18,7 @@ Once you have a Link Session Token, create your MoneyKit Connect instance:
 
 ```js
 import MoneyKit from "@moneykit/connect";
-]
+
 const moneykit = new MoneyKit();
 ```
 
